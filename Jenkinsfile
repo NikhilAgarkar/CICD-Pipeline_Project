@@ -8,8 +8,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                sh './gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                //sh './gradlew build --no-daemon'
+	def gradleCommand = isUnix() ? './gradlew' : 'gradlew.bat'
+              sh "${gradleCommand} build --no-daemon"                
+	archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
         stage('Build Docker Image') {
