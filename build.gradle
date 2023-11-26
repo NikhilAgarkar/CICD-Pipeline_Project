@@ -14,10 +14,11 @@ java {
 node {
     version = "9.11.1"
     npmVersion = "5.6.0"
+
     // Explicitly specify the layout for the nodeSetup task
     setupTask {
-        packageJson = file('package.json')
-        nodeModules = file('node_modules')
+        packageJson = file("${project.projectDir}/package.json")
+        nodeModules = file("${project.projectDir}/node_modules")
     }
 }
 
