@@ -1,6 +1,14 @@
 plugins {
   //inlude the nodeJS plugin to execute nodejs and npm tasks
   id "com.moowork.node" version "1.2.0"
+// Apply the Java plugin
+    id 'java'
+}
+
+java {
+    // Set the Java version to 17
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 node {
