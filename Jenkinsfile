@@ -8,9 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                //sh './gradlew build --no-daemon'
-	def gradleCommand = isUnix() ? './gradlew' : 'gradlew.bat'
-              sh "${gradleCommand} build --no-daemon"                
+                sh './gradlew.bat build --no-daemon'             
 	archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
