@@ -5,22 +5,14 @@ pipeline {
         DOCKER_IMAGE_NAME = "nikhilagarkar/train-schedule"
     }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Running build automation'
-                bat './gradlew build --no-daemon'
+	stage('Build') {
+   	 steps {
+        		echo 'Running build automation'
+        		bat './gradlew build --no-daemon'
+       		 archiveArtifacts artifacts: '**/build/distributions/*.zip', onlyIfSuccessful: true
+    		}
+	}
 
-                // Debug stage
-                script {
-                    bat 'dir /s'
-                }
-
-                //archiveArtifacts artifacts: 'build\\distributions\\trainSchedule.zip'
-	//archiveArtifacts artifacts: 'build/distributions/trainSchedule.zip', onlyIfSuccessful: true
-	archiveArtifacts artifacts: 'build/libs/*.zip', onlyIfSuccessful: true
-
-            }
-        }
         stage('Build Docker Image') {
             when {
                 branch 'master'
