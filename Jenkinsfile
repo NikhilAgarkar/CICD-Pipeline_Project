@@ -16,7 +16,8 @@ pipeline {
                 }
 
                 //archiveArtifacts artifacts: 'build\\distributions\\trainSchedule.zip'
-	archiveArtifacts artifacts: 'build/distributions/trainSchedule.zip', onlyIfSuccessful: true
+	//archiveArtifacts artifacts: 'build/distributions/trainSchedule.zip', onlyIfSuccessful: true
+	archiveArtifacts artifacts: 'build/libs/*.zip', onlyIfSuccessful: true
 
             }
         }
