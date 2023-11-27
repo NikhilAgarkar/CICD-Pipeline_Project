@@ -15,7 +15,9 @@ pipeline {
                     bat 'dir /s'
                 }
 
-                archiveArtifacts artifacts: 'build\\distributions\\trainSchedule.zip'
+                //archiveArtifacts artifacts: 'build\\distributions\\trainSchedule.zip'
+	archiveArtifacts artifacts: 'build/distributions/trainSchedule.zip', onlyIfSuccessful: true
+
             }
         }
         stage('Build Docker Image') {
