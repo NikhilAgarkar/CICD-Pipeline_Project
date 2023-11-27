@@ -18,15 +18,11 @@ task printDirectory {
 }
 
 
-
-
-
 task zip(type: Zip) {
-    from file('dist') {
-        include '**/*'
-    }
-    destinationDir(file("build"))
-    baseName "trainSchedule"
+    from 'dist'
+    into 'build'
+    include '**/*'
+    baseName 'trainSchedule'
 }
 
 
