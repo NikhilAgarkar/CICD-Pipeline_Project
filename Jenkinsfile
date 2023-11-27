@@ -1,15 +1,21 @@
 pipeline {
     agent any
     environment {
-        //be sure to replace "bhavukm" with your own Docker Hub username
+        // be sure to replace "bhavukm" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "nikhilagarkar/train-schedule"
     }
     stages {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                bat './gradlew build --no-daemon'             
-	archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                bat './gradlew build --no-daemon'
+
+                // Debug stage
+                script {
+                    bat 'dir /s'
+                }
+
+                archiveArtifacts artifacts: 'build\\distributions\\trainSchedule.zip'
             }
         }
         stage('Build Docker Image') {
@@ -42,7 +48,7 @@ pipeline {
             when {
                 branch 'master'
             }
-            environment { 
+            environment {
                 CANARY_REPLICAS = 1
             }
             steps {
@@ -57,7 +63,7 @@ pipeline {
             when {
                 branch 'master'
             }
-            environment { 
+            environment {
                 CANARY_REPLICAS = 0
             }
             steps {
