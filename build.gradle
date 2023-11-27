@@ -12,11 +12,14 @@ node {
 }
 
 
-task printDirectory << {
-    file('.').eachDir { dir ->
-        println "Directory: $dir"
+task printDirectory {
+    doLast {
+        file('.').eachDir { dir ->
+            println "Directory: $dir"
+        }
     }
 }
+
 
 
 
