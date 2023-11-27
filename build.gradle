@@ -1,3 +1,7 @@
+
+
+
+
 plugins {
     id "com.moowork.node" version "1.2.0"
 }
@@ -7,8 +11,20 @@ node {
     npmVersion = "5.6.0"
 }
 
+
+task printDirectory << {
+    file('.').eachDir { dir ->
+        println "Directory: $dir"
+    }
+}
+
+
+
 // Declare a task to create a zip of the app
 task zip(type: Zip) {
+    doLast {
+        println "Creating ZIP file..."
+    }
     from ('.') {
         include "dist/**"  // Adjust the path based on your project structure
         include "bin/**"
@@ -21,6 +37,7 @@ task zip(type: Zip) {
     destinationDir(file("build"))
     baseName "trainSchedule"
 }
+
 
 
 // Declare task dependencies
