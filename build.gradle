@@ -10,7 +10,7 @@ node {
 // Declare a task to create a zip of the app
 task zip(type: Zip) {
     from ('.') {
-        include "*"
+        include "dist/**"  // Adjust the path based on your project structure
         include "bin/**"
         include "data/**"
         include "node_modules/**"
@@ -18,9 +18,10 @@ task zip(type: Zip) {
         include "routes/**"
         include "views/**"
     }
-    destinationDir(file("dist"))
+    destinationDir(file("build"))
     baseName "trainSchedule"
 }
+
 
 // Declare task dependencies
 zip.dependsOn npm_build
