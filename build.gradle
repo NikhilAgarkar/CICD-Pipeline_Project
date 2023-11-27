@@ -21,19 +21,9 @@ task printDirectory {
 
 
 
-// Declare a task to create a zip of the app
 task zip(type: Zip) {
-    doLast {
-        println "Creating ZIP file..."
-    }
-  from project.rootProject.file('dist') {
-        include "dist/**"  // Adjust the path based on your project structure
-        include "bin/**"
-        include "data/**"
-        include "node_modules/**"
-        include "public/**"
-        include "routes/**"
-        include "views/**"
+    from file('dist') {
+        include '**/*'
     }
     destinationDir(file("build"))
     baseName "trainSchedule"
