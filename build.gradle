@@ -14,11 +14,12 @@ node {
 
 task printDirectory {
     doLast {
-        file('.').eachDir { dir ->
+        project.file('.').eachDir { dir ->
             println "Directory: $dir"
         }
     }
 }
+
 
 
 
